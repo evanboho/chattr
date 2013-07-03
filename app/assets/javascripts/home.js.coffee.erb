@@ -1,0 +1,21 @@
+pusher = new Pusher("<%= Pusher.key %>")
+channel = pusher.subscribe("channel1")
+channel.bind "msg", (data) ->
+  $('.chat').append("<div class=#{data.color}>#{data.name}> #{data.message}</div>")
+
+$ ->
+  $('form').submit ->
+    msg = $('input#message').val()
+    name = $('input#name').val()
+    color = $('#color').val()
+    $('input#message').val(" ")
+    $('input#name').val(" ")
+    $('#color').val(" ")
+    $.ajax
+      method: "POST"
+      url: "/send_message"
+      data:
+        sender: name
+        text: msg
+        color: color
+    return false

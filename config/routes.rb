@@ -1,4 +1,9 @@
 Chattr::Application.routes.draw do
+  get "home/index"
+  root :to => "home#index"
+  get "/new" => "home#new"
+  
+  post "/send_message" => "home#send_message"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,12 @@
+.chat
+  - Message.all.each do |msg|
+    %div{class: "#{msg.color}"} #{msg.sender}> #{msg.text}
+= form_tag do
+  message: 
+  = text_field_tag :message
+  %br
+  name:
+  = text_field_tag :name  
+  %br
+  = select_tag :color, options_for_select([["red", "red"], ["green", "green"], ["blue", "blue"]])
+  = submit_tag "Send"
